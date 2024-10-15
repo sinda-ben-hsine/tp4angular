@@ -3,7 +3,8 @@
     <h2>Modifier Film:</h2>
   </div>
 </div>
-<form>
+
+<form (ngSubmit)="updateFilm()">
   <div class="col-sm-2 col-md-2 col-lg-2">
     <label>ID Film</label>
     <input
@@ -13,6 +14,7 @@
       class="form-control"
     />
   </div>
+
   <div class="col-sm-4 col-md-4 col-lg-4">
     <label>Nom Film</label>
     <input
@@ -22,6 +24,7 @@
       class="form-control"
     />
   </div>
+
   <div class="col-sm-2 col-md-2 col-lg-2">
     <label>Duree en Minutes</label>
     <input
@@ -31,6 +34,7 @@
       class="form-control"
     />
   </div>
+
   <div class="col-sm-4 col-md-4 col-lg-4">
     <label>Date Sortir</label>
     <input
@@ -41,9 +45,21 @@
       class="form-control"
     />
   </div>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Genre:</label>
+    <select
+      class="form-control form-control-lg"
+      id="idGen"
+      name="idGen"
+      [(ngModel)]="updatedGenID"
+    >
+      <option *ngFor="let gen of genres" [value]="gen.idGen">
+        {{ gen.nomGen }}
+      </option>
+    </select>
+  </div>
+
   <div class="mt-2">
-    <button type="submit" (click)="updateFilm()" class="btn btn-success">
-      Modifier
-    </button>
+    <button type="submit" class="btn btn-success">Modifier</button>
   </div>
 </form>

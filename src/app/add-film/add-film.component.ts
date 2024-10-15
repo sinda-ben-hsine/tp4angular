@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Films } from '../model/Film.model';
 import { FilmService } from '../services/film.service';
 import { Router } from '@angular/router'; // Assure-toi d'importer Router
+import { Genre } from '../model/genre.model';
 
 @Component({
   selector: 'app-add-film',
@@ -10,15 +11,29 @@ import { Router } from '@angular/router'; // Assure-toi d'importer Router
 })
 export class AddFilmComponent {
   newFilm = new Films();
+  genres! : Genre[];
+  newIdGen !: number;
+  newGenre ! : Genre;
   message: string = '';
 
   constructor(private filmService: FilmService, private router: Router) { // Injecte le Router
   }
+  ngOnInit():void{
+    this.genres = this.filmService.listeGenres();
+
+  }
 
   addFilm() {
-    //console.log(this.newFilm);
-    this.filmService.ajouterFilm(this.newFilm);
-    this.message = "Film " + this.newFilm.nomFilm + " ajouté avec succès !";
-    this.router.navigate(["films"]); // Utilise le router pour naviguer
+    this.newGenre = this.filmService.consulterGenres(this.newIdGen);
+    this.newFilm.genre = this.newGenre;
+  
+    // Ajouter le nouveau film et récupérer son ID
+    const newFilmId = this.filmService.ajouterFilm(this.newFilm);
+   
+    // Naviguer vers la page de modification du film ajouté
+    this.router.navigate(["/update-film", newFilmId]);
+    
   }
+  
 }
+  
