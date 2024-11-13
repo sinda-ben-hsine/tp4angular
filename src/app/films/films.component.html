@@ -19,12 +19,16 @@
             <td>{{ film.dateSortir | date : "dd/MM/yyyy" }}</td>
             <td>{{ film.genre.nomGen }}</td>
             <td>
-              <a class="btn btn-danger" (click)="supprimerFilm(film)"
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-danger"
+                (click)="supprimerFilm(film)"
                 >Supprimer</a
               >
             </td>
             <td>
               <a
+                *ngIf="authService.isAdmin()"
                 class="btn btn-success"
                 [routerLink]="['/updateFilm', film.idFilm]"
                 >Modifier</a

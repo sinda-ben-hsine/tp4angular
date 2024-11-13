@@ -7,6 +7,8 @@ import { FilmsComponent } from './films/films.component';
 import { AddFilmComponent } from './add-film/add-film.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateFilmComponent } from './update-film/update-film.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { UpdateFilmComponent } from './update-film/update-film.component';
     BindingComponent,
     FilmsComponent,
     AddFilmComponent,
-    UpdateFilmComponent
+    UpdateFilmComponent,
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
